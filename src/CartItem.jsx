@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from './CartSlice';
+import { removeItem, incrementItem, decrementItem } from './CartSlice';
 import './CartItem.css';
 
 const CartItem = ({ onContinueShopping }) => {
@@ -18,19 +18,20 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleContinueShopping = (e) => {
-    dispatch(onContinueShopping(e));
+    dispatch((e) => onContinueShopping(e));
   };
 
   const handleCheckoutShopping = (e) => {
+    console.log('Checkout');
     alert('Functionality to be added for future reference');
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity(item.quantity + 1))
+    dispatch(incrementItem(item))
   };
 
   const handleDecrement = (item) => {
-    dispatch(updateQuantity(item.quantity - 1))
+    dispatch(decrementItem(item))
   };
 
   const handleRemove = (item) => {
@@ -68,7 +69,7 @@ const CartItem = ({ onContinueShopping }) => {
       <div className="continue_shopping_btn">
         <button className="get-started-button" onClick={(e) => handleContinueShopping(e)}>Continue Shopping</button>
         <br />
-        <button className="get-started-button1">Checkout</button>
+        <button className="get-started-button1" onClick={(e) => handleCheckoutShopping(e)}>Checkout</button>
       </div>
     </div>
   );
