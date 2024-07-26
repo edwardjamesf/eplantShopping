@@ -325,7 +325,13 @@ function ProductList() {
                                     <div className='product-price'>{plant.cost}</div>
                                     <img className='product-image' src={plant.image} alt={plant.name} />
                                     <div style={{ paddingTop: 10, paddingBottom: 10}}>{plant.description}</div>
-                                    <button className={'product-button'} onClick={() => handleAddToCart(plant)}>Add to Cart</button>
+                                    <button
+                                        className={cart.find(item => item.name === plant.name) ? 'product-button added-to-cart' : 'product-button'}
+                                        onClick={() => handleAddToCart(plant)}
+                                        disabled={cart.find(item => item.name === plant.name) ? true : false}
+                                    >
+                                        Add to Cart
+                                    </button>
                                 </div>
                             ))}
                         </div>
